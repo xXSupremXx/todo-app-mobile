@@ -1,0 +1,33 @@
+.toolbar{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.edit-name{
+    height: 2.6rem;
+}
+.edit-description{
+    height: 5rem;
+}
+
+.edit-date{
+    height: 2.6rem;
+}
+
+.text{
+    height: 6rem;
+}
+
+.date{
+    padding-left: 0rem;
+}
+
+.saveButton{
+    width: 90%;
+    margin-left: 5%;
+}
+
+agm-map{
+    height: 20rem;
+    //width: 100%;
+}

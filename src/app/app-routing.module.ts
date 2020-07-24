@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'add-item-view',
+    loadChildren: () => import('./add-item-view/add-item-view.module').then( m => m.AddItemViewPageModule)
+  },
+  {
+    path: 'edit-item-view/:id',
+    loadChildren: () => import('./edit-item-view/edit-item-view.module').then( m => m.EditItemViewPageModule)
+  },
 ];
 
 @NgModule({

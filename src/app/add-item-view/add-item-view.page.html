@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="toolbar">
+      <ion-back-button></ion-back-button>
+      <ion-title>add-item-view</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="add-name">
+    <div class="input">
+      <ion-input #name placeholder="name"></ion-input>
+    </div>
+    
+  </ion-card>
+  <ion-card class="add-description">
+    <div class="input">
+      <ion-textarea #desc placeholder="description"></ion-textarea>
+    </div>
+  </ion-card>
+  <ion-card class="add-date">
+    <div>
+      <ion-datetime #date displayFormat="MMM DD, YYYY" placeholder="date"></ion-datetime>
+    </div>
+  </ion-card>
+  <ion-card>
+    <ion-button *ngIf="!image" (click)="takePhoto()">photo</ion-button>
+    <img [src]="image"/>
+  </ion-card>
+  <ion-card>
+    <ion-button (click)="getGPS()">{{gpsButtonName}}</ion-button>
+    <agm-map *ngIf="latitude && longitude" disableDefaultUI="true" [longitude]="longitude" [latitude]="latitude" [zoom]="17">
+      <agm-marker [longitude]="longitude" [latitude]="latitude"></agm-marker>
+    </agm-map>
+  </ion-card>
+  <ion-button class="addButton" (click)="add(name.value, desc.value, date.value)">add</ion-button>
+</ion-content>

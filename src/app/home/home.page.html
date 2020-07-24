@@ -1,7 +1,7 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
     <ion-title>
-      Blank
+      ToDo-List
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,58 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">ToDo-List</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-content>
+      <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-card>
+        <ion-list class="list">
+          <ion-item lines="inset" *ngFor="let item of todoList; let indexOfElement = index" [class]="item.over ? 'red' : 'neutral'">
+            <div class="list-item">
+              <div class="left-side-item">
+                <div>
+                  <ion-checkbox class="checkbox" [(ngModel)]="item.done" (ionChange)="checkBoxChange($event, indexOfElement)"></ion-checkbox>
+                </div>
+                <div class="item-name">
+                  {{item.name}}
+                </div>
+              </div>
+              <div class="right-side">
+                <ion-button routerLink="/edit-item-view/{{item.id}}" class="button" color="primary">
+                  <ion-icon name="create-outline" color="light"></ion-icon>
+                </ion-button>
+                <ion-button color="danger" (click)="deleteItem(item)">
+                  <ion-icon name="trash-outline" color="light"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+            <!--<ion-grid no-padding fixed="true" [class]="item.over ? 'red' : 'neutral'">
+              <ion-row class="row">
+                <ion-col class="left-side-item">
+                  <div>
+                    <ion-checkbox class="checkbox" [(ngModel)]="item.done" (ionChange)="checkBoxChange($event, indexOfElement)"></ion-checkbox>
+                  </div>
+                  <div class="item-name">
+                    {{item.name}}
+                  </div>
+                  
+                </ion-col>
+                <ion-col class="buttons" size="1">
+                  <ion-button routerLink="/edit-item-view/{{item.id}}" class="button" color="primary">
+                    <ion-icon name="create-outline" color="light"></ion-icon>
+                  </ion-button>
+                  <ion-button color="danger" (click)="deleteItem(item)">
+                    <ion-icon name="trash-outline" color="light"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>-->
+          </ion-item>
+        </ion-list>
+      </ion-card>
+      <ion-button class="add-button" routerLink="/add-item-view">add item</ion-button>
+    </ion-content>
 </ion-content>

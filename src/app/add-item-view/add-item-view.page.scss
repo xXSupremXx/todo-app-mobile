@@ -1,0 +1,32 @@
+.toolbar{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.add-name{
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.add-description{
+    height: 5rem;
+}
+
+.addButton{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2rem;
+}
+
+agm-map{
+    height: 400px;
+    //width: 100%;
+}

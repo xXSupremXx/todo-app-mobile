@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <div *ngIf="currentItem" class="toolbar">
+      <ion-back-button class="backbutton"></ion-back-button>
+      <ion-title >edit "{{currentItem.name.trim()}}"</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container" *ngIf="currentItem">
+    <ion-card class="edit-name">
+      <div class="input">
+        <ion-item>
+          <ion-input #name value="{{currentItem.name}}"></ion-input>
+        </ion-item>
+      </div>
+    </ion-card>
+    <ion-card class="edit-description">
+      <div class="input">
+        <ion-item>
+          <ion-textarea class="text" #desc value="{{currentItem.description}}"></ion-textarea>
+        </ion-item>
+      </div>
+    </ion-card>
+    <ion-card class="edit-date">
+      <div>
+        <ion-item>
+          <ion-datetime #date class="date" displayFormat="MMM DD, YYYY" value="{{currentItem.date | date}}"></ion-datetime>
+        </ion-item>
+      </div>
+    </ion-card>
+    <!--<ion-card *ngIf="imageUrl">
+      <img [src]="imageUrl" />
+    </ion-card>-->
+    <ion-card>
+      <ion-button (click)="getGPS()">{{gpsButtonName}}</ion-button>
+      <agm-map *ngIf="currentItem.latitude && currentItem.longitude" disableDefaultUI="true" [longitude]="currentItem.longitude" [latitude]="currentItem.latitude" [zoom]="17">
+        <agm-marker [longitude]="currentItem.longitude" [latitude]="currentItem.latitude"></agm-marker>
+      </agm-map>
+    </ion-card>
+    <ion-button class="saveButton" (click)="save(name.value, desc.value, date.value)">Save</ion-button>
+    <ion-button class="saveButton" (click)="delete()">delete</ion-button>
+  </div>
+</ion-content>
